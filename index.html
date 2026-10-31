@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hogwarts | Home</title>
+    <link rel="icon" type="image/png" href="Image\校徽.png">
+
     <style>
         *{box-sizing:border-box;margin:0;padding:0;font-family:Georgia,serif}
         body{background:#0b0f1a;color:#f0e6d2;text-align:center;padding:40px}
+
+        /* 顶部通知书图片样式 */
+        .hero-letter {
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 40px;
+            border: 1px solid #d4af37;
+            border-radius: 6px;
+            box-shadow: 0 0 18px rgba(212, 175, 55, 0.35);
+        }
+
         nav{margin-bottom:40px}
         nav a{color:#d4af37;text-decoration:none;margin:0 15px;font-size:18px}
         nav a:hover{text-shadow:0 0 8px #d4af37}
@@ -17,6 +31,7 @@
     </style>
 </head>
 <body>
+    <!-- 顶部导航栏 -->
     <nav>
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -24,6 +39,11 @@
         <a href="quote.html">Characters</a>
         <a href="machine.html">Sorting Hat</a>
     </nav>
+
+    <!-- 录取通知书图片（导航与正文中间） -->
+    <img src="Image\入学通知书.png" alt="Hogwarts Acceptance Letter" class="hero-letter">
+
+    <!-- 正文卡片 -->
     <div class="card">
         <h1>Welcome to Hogwarts School of Witchcraft and Wizardry</h1>
         <p>Hogwarts is a magical boarding school hidden in the highlands of Scotland. It trains young witches and wizards from all over Britain.
