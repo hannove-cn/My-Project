@@ -8,13 +8,17 @@
 
     <style>
         *{box-sizing:border-box;margin:0;padding:0;font-family:Georgia,serif}
-        body{background:#0b0f1a;color:#f0e6d2;padding:40px}
+        body{
+            background:#0b0f1a;
+            color:#f0e6d2;
+            padding:40px;
+            overflow-x:hidden;
+        }
 
         nav{margin-bottom:40px;text-align:center}
         nav a{color:#d4af37;text-decoration:none;margin:0 15px;font-size:18px}
         nav a:hover{text-shadow:0 0 8px #d4af37}
 
-        /* 左右容器 */
         .container{
             display:flex;
             align-items:center;
@@ -24,7 +28,6 @@
             margin:0 auto 30px;
         }
 
-        /* 图片稍微变大 */
         .hero-letter {
             width: 100%;
             max-width: 500px;
@@ -39,7 +42,6 @@
             text-align:center;
         }
 
-        /* 欢迎框稍微变大 */
         .card{
             padding:40px;
             border:1px solid #d4af37;
@@ -50,7 +52,6 @@
         h1{color:#d4af37;margin-bottom:24px;font-size:30px}
         p{line-height:1.8;font-size:18px}
 
-        /* 四个超链接：放在欢迎框下方中间 */
         .page-links{
             display:flex;
             flex-wrap:wrap;
@@ -74,7 +75,32 @@
             box-shadow:0 0 12px #d4af37;
         }
 
-        /* 移动端：自动变成上下布局 */
+        /* 魔法长光带：由多个光点连接而成 */
+        .magic-trail{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            pointer-events:none;
+            z-index:-1;
+        }
+
+        .magic-trail span{
+            position:absolute;
+            width:7px;
+            height:7px;
+            border-radius:50%;
+            background:#d4af37;
+            box-shadow:
+                0 0 8px #d4af37,
+                0 0 16px rgba(212,175,55,0.8),
+                0 0 26px rgba(212,175,55,0.5);
+            opacity:0;
+            transform:translate(-50%,-50%);
+            transition:opacity 0.25s ease;
+        }
+
         @media(max-width:900px){
             .container{
                 flex-direction:column;
@@ -87,6 +113,11 @@
     </style>
 </head>
 <body>
+
+
+    <!-- 鼠标长光带容器 -->
+    <div class="magic-trail" id="magicTrail"></div>
+
     <!-- 顶部导航栏 -->
     <nav>
         <a href="index.html">Home</a>
@@ -119,6 +150,66 @@
         <a href="quote.html">Characters</a>
         <a href="machine.html">Sorting Hat</a>
     </div>
+
+<script>
+const trail = document.getElementById('magicTrail');
+const dots = [];
+const trailLength = 30; // 光带长度，数值越大越长
+
+// 预先生成一串光点
+for(let i = 0; i < trailLength; i++){
+    const span = document.createElement('span');
+    trail.appendChild(span);
+    dots.push({
+        el: span,
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2
+    });
+}
+
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+
+// 记录鼠标位置
+window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+// 让光点依次跟随，形成长光带
+function animateTrail(){
+    dots.forEach((dot, index) => {
+        let targetX, targetY;
+
+        if(index === 0){
+            targetX = mouseX;
+            targetY = mouseY;
+        }else{
+            targetX = dots[index - 1].x;
+            targetY = dots[index - 1].y;
+        }
+
+        // 缓动跟随，数字越小越顺滑
+        dot.x += (targetX - dot.x) * 0.35;
+        dot.y += (targetY - dot.y) * 0.35;
+
+        dot.el.style.left = dot.x + 'px';
+        dot.el.style.top = dot.y + 'px';
+
+        // 越往后的光点越淡，形成拖尾
+        const opacity = 1 - index / trailLength;
+        dot.el.style.opacity = opacity;
+
+        // 后面的光点稍微变小
+        const scale = 1 - index / trailLength * 0.5;
+        dot.el.style.transform = `translate(-50%,-50%) scale(${scale})`;
+    });
+
+    requestAnimationFrame(animateTrail);
+}
+
+animateTrail();
+</script>
 
 </body>
 </html>

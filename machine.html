@@ -5,6 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sorting Hat | Hogwarts</title>
 <style>
+    .magic-trail{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:-1;
+}
+.magic-trail span{
+    position:absolute;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#d4af37;
+    box-shadow:
+        0 0 8px #d4af37,
+        0 0 16px rgba(212,175,55,0.8),
+        0 0 26px rgba(212,175,55,0.5);
+    opacity:0;
+    transform:translate(-50%,-50%);
+    transition:opacity 0.25s ease;
+}
+
     * {
         box-sizing: border-box;
         margin: 0;
@@ -228,6 +252,8 @@
 </head>
 
 <body>
+    <div class="magic-trail" id="magicTrail"></div>
+
     <nav>
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -318,5 +344,7 @@
             }
         });
     </script>
+    <script src="trail.js"></script>
+
 </body>
 </html>
