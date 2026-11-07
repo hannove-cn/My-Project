@@ -8,26 +8,82 @@
 
     <style>
         *{box-sizing:border-box;margin:0;padding:0;font-family:Georgia,serif}
-        body{background:#0b0f1a;color:#f0e6d2;text-align:center;padding:40px}
+        body{background:#0b0f1a;color:#f0e6d2;padding:40px}
 
-        /* 顶部通知书图片样式 */
+        nav{margin-bottom:40px;text-align:center}
+        nav a{color:#d4af37;text-decoration:none;margin:0 15px;font-size:18px}
+        nav a:hover{text-shadow:0 0 8px #d4af37}
+
+        /* 左右容器 */
+        .container{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:50px;
+            max-width:1200px;
+            margin:0 auto 30px;
+        }
+
+        /* 图片稍微变大 */
         .hero-letter {
-            display: block;
             width: 100%;
             max-width: 500px;
-            margin: 0 auto 40px;
             border: 1px solid #d4af37;
             border-radius: 6px;
             box-shadow: 0 0 18px rgba(212, 175, 55, 0.35);
         }
 
-        nav{margin-bottom:40px}
-        nav a{color:#d4af37;text-decoration:none;margin:0 15px;font-size:18px}
-        nav a:hover{text-shadow:0 0 8px #d4af37}
-        .card{max-width:700px;margin:30px auto;padding:30px;border:1px solid #d4af37;border-radius:12px;transition:0.3s}
+        .content-wrap{
+            flex:1;
+            max-width:600px;
+            text-align:center;
+        }
+
+        /* 欢迎框稍微变大 */
+        .card{
+            padding:40px;
+            border:1px solid #d4af37;
+            border-radius:12px;
+            transition:0.3s
+        }
         .card:hover{box-shadow:0 0 20px #d4af37}
-        h1{color:#d4af37;margin-bottom:20px}
-        p{line-height:1.7;font-size:17px}
+        h1{color:#d4af37;margin-bottom:24px;font-size:30px}
+        p{line-height:1.8;font-size:18px}
+
+        /* 四个超链接：放在欢迎框下方中间 */
+        .page-links{
+            display:flex;
+            flex-wrap:wrap;
+            gap:16px;
+            justify-content:center;
+            margin-top:30px;
+            padding-bottom:20px;
+        }
+        .page-links a{
+            color:#f0e6d2;
+            border:1px solid #d4af37;
+            padding:10px 20px;
+            border-radius:8px;
+            text-decoration:none;
+            font-size:17px;
+            transition:0.3s;
+        }
+        .page-links a:hover{
+            background:#d4af37;
+            color:#0b0f1a;
+            box-shadow:0 0 12px #d4af37;
+        }
+
+        /* 移动端：自动变成上下布局 */
+        @media(max-width:900px){
+            .container{
+                flex-direction:column;
+                gap:30px;
+            }
+            body{
+                padding:20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -40,16 +96,29 @@
         <a href="machine.html">Sorting Hat</a>
     </nav>
 
-    <!-- 录取通知书图片（导航与正文中间） -->
-    <img src="Image\入学通知书.png" alt="Hogwarts Acceptance Letter" class="hero-letter">
+    <div class="container">
+        <!-- 左侧：录取通知书图片 -->
+        <img src="Image\入学通知书.png" alt="Hogwarts Acceptance Letter" class="hero-letter">
 
-    <!-- 正文卡片 -->
-    <div class="card">
-        <h1>Welcome to Hogwarts School of Witchcraft and Wizardry</h1>
-        <p>Hogwarts is a magical boarding school hidden in the highlands of Scotland. It trains young witches and wizards from all over Britain.
-        <br><br>
-        You are stepping into a world of spells, potions, broomsticks and ancient magic.
-        </p>
+        <!-- 右侧：欢迎卡片 -->
+        <div class="content-wrap">
+            <div class="card">
+                <h1>Welcome to Hogwarts School of Witchcraft and Wizardry!</h1>
+                <p>Hogwarts is a magical boarding school hidden in the highlands of Scotland. It trains young witches and wizards from all over Britain.
+                <br><br>
+                You are stepping into a world of spells, potions, broomsticks and ancient magic.
+                </p>
+            </div>
+        </div>
     </div>
+
+    <!-- 四个超链接：位于图片和欢迎框下方中间 -->
+    <div class="page-links">
+        <a href="about.html">About Hogwarts</a>
+        <a href="project.html">Facilities</a>
+        <a href="quote.html">Characters</a>
+        <a href="machine.html">Sorting Hat</a>
+    </div>
+
 </body>
 </html>

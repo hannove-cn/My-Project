@@ -311,7 +311,8 @@
             } else if (clickCount >= 10) {
                 hatMessage.textContent = "Stop hitting this poor hat!";
             } else if (sorted) {
-                hatMessage.textContent = "You have already been sorted.";
+                hatMessage.textContent = "You have already been sorted into <span class='house-name'>" + randomHouse + "</span>.<br>" +
+                    "<span style='font-size:17px;color:#d4c89a'>" + houseDescriptions[randomHouse] + "</spa"
             } else {
                 hatMessage.textContent = "The hat is thinking... Try again.";
             }
